@@ -1,12 +1,13 @@
 <?php
 
 
+
 function add_admin_scripts( $hook ) {
 
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( 'ecowelle_case_study' === $post->post_type ) {     
+        if ( CASESTUDYPOSTTYPE === $post->post_type ) {     
             // wp_enqueue_script(  'myscript', get_stylesheet_directory_uri().'/js/myscript.js' );
             tz_slideshow_load_admin_scripts();
         }
@@ -23,7 +24,7 @@ function wpt_add_event_metaboxes() {
 		'wpt_events_location',
 		'Event Location',
 		'wpt_events_location',
-		'ecowelle_case_study',
+		CASESTUDYPOSTTYPE,
 		'advanced', 
 		'default'
 	);
@@ -49,6 +50,7 @@ function wpt_events_location() {
 
 		<!-- <input type="text" name="location" value="<?php esc_textarea( $location ); ?>" class="widefat"> -->
 	 		<!-- slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
+	 		<h2>Configure Slides here</h2>
 		<section ng-app="SnowboticaSlidesConfig">
 	 		<tz-edit-slideshow 
 	 		slideshow-name="location"

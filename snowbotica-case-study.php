@@ -11,6 +11,10 @@ Author URI: http://nowbotica.com/
 define( 'SNOWBOTICASLIDES', plugin_dir_path( __FILE__ ) );
 define( 'SNOWBOTICASLIDES_URL', plugin_dir_url( __FILE__ ) );
 
+define( 'CASESTUDYPOSTTYPE', 'snwb_case_study' );
+define( 'CASESTUDYSLUG', 'case-study' );
+
+
 /**
  * Includes js and css
  *
@@ -56,8 +60,8 @@ if ( ! function_exists( 'snowboticaSlides_dashboard' ) ) {
 */
 function tz_slideshow_load_admin_scripts() {
  
-    if( $hook != 'widgets.php' ) 
-     return;
+    // if( $hook != 'widgets.php' ) 
+     // return;
     
     wp_enqueue_script( 'angular', SNOWBOTICASLIDES_URL .  'application/dependencies/angular/angular.js', array( 'jquery'), '', true);
 
@@ -71,6 +75,7 @@ function tz_slideshow_load_admin_scripts() {
 
 
 # Included parts
+include( SNOWBOTICASLIDES . '/parts/set-up-post-type-with-templates.php');
 include( SNOWBOTICASLIDES . '/parts/slide-in-custom-posts.php');
 include( SNOWBOTICASLIDES . '/parts/slide-settings-page.php');
 include( SNOWBOTICASLIDES . '/parts/frontend-shortcode.php');
