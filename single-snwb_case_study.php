@@ -13,92 +13,58 @@ get_header(); ?>
 <!-- <section class="contains-2 snowbotica-case-study"> -->
 
 <section class="snowbotica-case-study container">
+	<?php while ( have_posts() ) : the_post(); ?>
+	<?php 
+	$sliderMetaJSON = get_post_meta( get_the_ID(), 'location', true ); 
+	// $sliderMetaJSON = preg_replace('/\s+/', '',$sliderMetaJSON);
+	// $sliderMetaJSON = stripslashes(str_replace('\"', '"', $sliderMetaJSON));
+	/* continue with ui prototyping */
+	$sliderMeta = json_decode($sliderMetaJSON, true);
+	// var_dump($sliderMeta['slides']);
+	$slides = $sliderMeta['slides'];
+	?>
 	<div class="row">
 	  	<div class="medium-5 large-6 columns">
 		  	<section class="gallery-slideshow">
-		  		<?php /*
-            	<div class="row case-study-masonry" data-masonry-options='{ "itemSelector": ".item" }'>
-				<?php $slides = get_field('case_study_gallery');?>
-	        	<?php foreach ( $slides as $key => $value) :?>
-	           		 <div class="large-6 small-6 columns item">
-	           		 	<article class="gallery-image">
-	           		 		<?php $image_id = $slides[$key]['gallery_image']['id'];?>
-	           		 		<?php echo wp_get_attachment_image( $image_id, 'service' );?>
-	           		 		<?php /*
-	           		 		<!-- <img src="<?= $slides[$key]['gallery_image']['url'];?>" alt="<?= $slides[$key]['gallery_image']['alt'];?>" /> -->
-	           		 	</article>
-	           		 </div>
-	        	<?php endforeach;?>
-            	</div>
-	           	*/ ?>
 				<div class="make-this-slide top">
-					<div class="slide image-slide mobile-preview-slide" data-index="0">
-						<div class="style-wrapper">
-							<img src="http://bin.geo/wp-content/uploads/2018/01/accordian-open-two.jpg" alt="" width="379" height="670" class="alignnone size-full wp-image-89" />
-							<!-- <p>The off canvas system uses javascript and css tranisitions to animate in context panels from either side of the browser screen.</p> -->
+					<?php foreach ($slides as $key => $slide):?>
+						<?php //$image = wp_get_attachment_image_src( $slide['image_id'] );?>
+						<?php //var_dump($image[0]);?>
+						<?php //$alt_text = get_post_meta($slide['image_id'], '_wp_attachment_image_alt', true);?>
+						<?php //$alt_text = get_post_meta($slide['image_id'], '_wp_attachment_image_title', true);?>
+						<?php //var_dump($alt_text);?>
+						<!-- echo $slide['image_id']; -->
+						<div class="slide image-slide mobile-preview-slide" data-index="0">
+							<div class="style-wrapper">
+								<?php echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
+								<!-- <img src="http://bin.geo/wp-content/uploads/2018/01/accordian-open-two.jpg" alt="" width="379" height="670" class="alignnone size-full wp-image-89" /> -->
+								<!-- <p>The off canvas system uses javascript and css tranisitions to animate in context panels from either side of the browser screen.</p> -->
+							</div>
 						</div>
-					</div>
-					<div class="slide image-slide mobile-preview-slide" data-index="1">
-						<div class="style-wrapper">
-							<img src="http://bin.geo/wp-content/uploads/2018/01/accordian-open-two-two.jpg" alt="" width="379" height="670" class="alignnone size-full wp-image-90" />
-							<!-- <p>The accordian menu which allows double nesting of categories has a suite of qunit functional tests to ensure new behaviours do not break existing functionality. </p> -->
-						</div>
-					</div>
-					<div class="slide image-slide mobile-preview-slide" data-index="2">
-						<div class="style-wrapper">
-							<img src="http://bin.geo/wp-content/uploads/2018/01/off-canvas-cart.jpg" alt="" width="379" height="670" class="alignnone size-full wp-image-91" />	 	
-							<!-- <p>The off canvas cart utilises plugin.xml to place the mini-cart html into the finished widget.</p>    -->
-						</div>
-					</div>
+					<?php endforeach; ?>
 				</div>
 	 		</section>
 	  	</div>
 		<div class="medium-7 large-6  columns">
-			<?php while ( have_posts() ) : the_post(); ?>
 				<article class="service-info background:#c6c6cf">
 					<h2><?php the_title();?></h2>
 					<div class="case-study-description">
 						<?php the_content();?>
-					</div>
-					<?php 
-					$sliderMetaJSON = get_post_meta( get_the_ID(), 'location', true ); 
-					// $sliderMetaJSON = preg_replace('/\s+/', '',$sliderMetaJSON);
-					// var_dump($sliderMetaJSON);
-
-// json_decode($k)
-					$sliderMeta = json_decode(stripslashes($sliderMetaJSON), true);
-					var_dump($sliderMeta);
-
-
-					$image_attributes = wp_get_attachment_image_src( $attachment_id = 8 );
-if ( $image_attributes ) : ?>
-    <img src="<?php echo $image_attributes[0]; ?>" width="<?php echo $image_attributes[1]; ?>" height="<?php echo $image_attributes[2]; ?>" />
-<?php endif; ?>
-
-					
-						<h2>go</h2>
+					</div>					
 					<?php if (get_post_meta( get_the_ID(), 'location', true ) ) : ?>
-					<?php endif; ?>
 					<div class="make-this-slide sub">
-						<div class="slide image-slide description-slide" data-index="0">
+						<?php foreach ($slides as $key => $slide):?>
+						<div class="slide image-slide description-slide" data-index="<?php echo $key;?>">
 							<div class="style-wrapper">
-								<p>The off canvas system uses javascript and css tranisitions to animate in context panels from either side of the browser screen.</p>
+								<p><?php echo $slide['caption']; ?></p>
 							</div>
 						</div>
-						<div class="slide image-slide description-slide" data-index="1">
-							<div class="style-wrapper">
-								<p>The accordian menu which allows double nesting of categories has a suite of qunit functional tests to ensure new behaviours do not break existing functionality. </p>
-							</div>
-						</div>
-						<div class="slide image-slide description-slide" data-index="2">
-							<div class="style-wrapper">
-								<p>The off canvas cart utilises plugin.xml to place the mini-cart html into the finished widget.</p>   
-							</div>
-						</div>
+						<?php endforeach;?>
 					</div>
+					<?php endif; ?>
 				</article>
-			<?php endwhile;?>
 		</div>
 	</div>
+	<?php endwhile;?>
 </section>
 <?php get_footer();

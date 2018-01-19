@@ -50,7 +50,7 @@ function wpt_events_location() {
 
 		<!-- <input type="text" name="location" value="<?php esc_textarea( $location ); ?>" class="widefat"> -->
 	 		<!-- slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
-	 		<h2>Configure Slides here</h2>
+	 	<h2>Configure Slides here</h2>
 		<section ng-app="SnowboticaSlidesConfig">
 	 		<tz-edit-slideshow 
 	 		slideshow-name="location"
@@ -81,7 +81,9 @@ function wpt_save_events_meta( $post_id, $post ) {
 	}
 	// Now that we're authenticated, time to save the data.
 	// This sanitizes the data from the field and saves it into an array $events_meta.
-	$events_meta['location'] = esc_textarea( $_POST['location'] );
+	// $events_meta['location'] = esc_textarea( $_POST['location'] );
+	$events_meta['location'] = $_POST['location'] ;
+	// $mysqli->set_charset("utf8");
 	// Cycle through the $events_meta array.
 	// Note, in this example we just have one item, but this is helpful if you have multiple.
 	foreach ( $events_meta as $key => $value ) :
