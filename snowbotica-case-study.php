@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Snowbotica Image Sliders
+Plugin Name: Snowbotica Case Study
 Plugin URI: http://nowbotica.com/lets-tzu-this/
 Description: A rust proof diy starter kit for micro enterprises | Slideshow functionality
 Author: Andrew MacKay
@@ -10,7 +10,6 @@ Author URI: http://nowbotica.com/
 
 define( 'SNOWBOTICASLIDES', plugin_dir_path( __FILE__ ) );
 define( 'SNOWBOTICASLIDES_URL', plugin_dir_url( __FILE__ ) );
-
 
 /**
  * Includes js and css
@@ -28,21 +27,23 @@ if ( ! function_exists( 'snowboticaSlides_frontend' ) ) {
      *  loads the applications css dependancies and theme css files
      */
     function snowboticaSlides_frontend() {
-
+        
+        wp_enqueue_style( 'case-study-css', SNOWBOTICASLIDES_URL .  'application/snowbotica-case-study.css', false, '', 'all');
         
         wp_enqueue_script( 'slick-js', SNOWBOTICASLIDES_URL .  'application/dependencies/slick/slick.js', array(), 'jquery', true);
 
         wp_enqueue_script( 'tz-slider-js', SNOWBOTICASLIDES_URL .  'application/frontend/tz-slider.js', array(), 'slick-js', true); 
-
+    
     }
 }
+
 
 if ( ! function_exists( 'snowboticaSlides_dashboard' ) ) {
     /*
      *  loads the applications js dependancies and application files
      */
     function snowboticaSlides_dashboard() {
-// echo SNOWBOTICASLIDES_URL . '/application/backend/tz-slider-config.js'; die;
+        // echo SNOWBOTICASLIDES_URL . '/application/backend/tz-slider-config.js'; die;
         // MVP Mechanic Profile Module
         // wp_enqueue_script( 'snowbotica-slides-module', SNOWBOTICASLIDES_URL . '/application/backend/tz-slider-config.js', array(
             // 'snowbotica-treeline'
@@ -55,8 +56,8 @@ if ( ! function_exists( 'snowboticaSlides_dashboard' ) ) {
 */
 function tz_slideshow_load_admin_scripts() {
  
-    // if( $hook != 'widgets.php' ) 
-    //  return;
+    if( $hook != 'widgets.php' ) 
+     return;
     
     wp_enqueue_script( 'angular', SNOWBOTICASLIDES_URL .  'application/dependencies/angular/angular.js', array( 'jquery'), '', true);
 
@@ -65,6 +66,7 @@ function tz_slideshow_load_admin_scripts() {
     wp_localize_script( 'snowbotica-slides-config', 'snowbotica_slides_config_object', array(
             'partials_path' => SNOWBOTICASLIDES_URL .  '/application' 
         ), '', true);
+
 }
 
 

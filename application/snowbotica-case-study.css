@@ -203,3 +203,94 @@ body {
     left: 0;
     width: 100%; 
   }
+
+
+.snowbotica-case-study {
+  padding:40px 0;
+  background:#c6c6cf
+}
+
+.snowbotica-case-study .service-info h2 {
+    text-align: left;
+    margin: 0;
+    /*font-family: 'Montserrat', sans-serif;*/
+    font-weight: 700;
+    color: #443d46;
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+}
+.snowbotica-case-study .service-info p {
+    color: #443d46;
+    font-size:16px;
+    
+}
+.snowbotica-case-study .case-study-description {
+  padding:15px;
+  /*margin:5px;*/
+  border-radius:5px;
+  background:white;
+  margin-bottom:20px;
+  margin-top:10px;
+}
+.snowbotica-case-study .case-study-description p:last-of-type {
+  margin-bottom:0;
+}
+.snowbotica-case-study .description-slide p {
+  font-size:29px;
+}
+
+.footer-bottom {
+    
+    /*border-top: 40px solid #aaaabf !important;*/
+    
+    border-top: 40px solid #a3c2d8 !important;
+    
+    /*border-top: 40px solid #338e16 !important;*/
+
+    /*border-top: 40px solid #377f84 !important;*/
+    
+    /*border-top: 40px solid #c56803 !important;*/
+
+    /*border-top: 40px solid #c6c6cf !important;*/
+
+}
+
+.top-bar .menu a {
+    color: #c6c6cf !important;
+}
+.top-bar .menu a:hover:not(.button) {
+    background-color: transparent !important;
+    color:#377f84 !important;
+}
+
+/*.snowbotica-case-study .service-study-*/
+
+.mobile-preview-slide.style-wrapper {
+  width:100%;
+  text-align: center;
+}
+
+ul.slick-dots {
+  display:block;
+  width:100%;
+  padding:0;
+  margin:0;
+  list-style: none;
+}
+ul.slick-dots li {
+  float: left;
+  padding:2px;
+  background:white;
+  margin-right:5px;
+}
+ul.slick-dots li button {
+  padding:12px;
+  background:white;
+  font-size:18px;
+  color:black;
+}
+ul.slick-dots li.slick-active button {
+  background:#a3c2d8;
+
+
+}
