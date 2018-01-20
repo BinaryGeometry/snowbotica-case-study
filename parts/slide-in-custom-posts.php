@@ -1,29 +1,28 @@
 <?php
 
 
-
 /**
  * Adds a metabox to the right side of the screen under the â€œPublishâ€ box
  */
-function wpt_add_event_metaboxes() {
+function snowboticaCaseStudy_add_event_metaboxes() {
 	add_meta_box(
-		'wpt_events_location',
+		'snowboticaCaseStudy_slides_meta',
 		'Event Location',
-		'wpt_events_location',
+		'snowboticaCaseStudy_slides_meta',
 		CASESTUDYPOSTTYPE,
 		'advanced', 
 		'default'
 	);
 }
-add_action( 'add_meta_boxes', 'wpt_add_event_metaboxes' );
+add_action( 'add_meta_boxes', 'snowboticaCaseStudy_add_event_metaboxes' );
 
 /**
  * Output the HTML for the metabox.
  */
-function wpt_events_location() {
+function snowboticaCaseStudy_slides_meta() {
 	global $post;
 	// Nonce field to validate form request came from current site
-	wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+	wp_nonce_field( basename( __FILE__ ), 'snowboticaCaseStudy_fields' );
 	// Get the location data if it's already been entered
 	$location = get_post_meta( $post->ID, 'location', true );
 	
@@ -32,37 +31,37 @@ function wpt_events_location() {
 
 	}
 	// Output the field
+	// <input type="text" name="location" value="<?php esc_textarea( $location ); ? >" class="widefat">
+	// slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]"
 	?>
 
-		<!-- <input type="text" name="location" value="<?php esc_textarea( $location ); ?>" class="widefat"> -->
-	 		<!-- slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
 	 	<h2>Configure Slides here</h2>
-		<section ng-app="SnowboticaSlidesConfig">
+		<section ng-app="SnowboticaCaseStudySlidesConfig">
 	 		<tz-edit-slideshow 
 	 		slideshow-name="location"
 	 		slideshow-value='<?php  echo $location; ?>'
 	 	></tz-edit-slideshow>
-		<!-- <section ng-app="SnowboticaSlidesConfig"> -->
-	 		<!-- <tz-edit-slideshow  -->
-	 		<!-- slideshow-name="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
-	 		<!-- slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
-	 		<!-- // slideshow-value='<?php echo $options['nwbt_tz_textarea_field_0'];?>' -->
-	 	<!-- ></tz-edit-slideshow> -->
 	 	</section>
 	<?php
+		// <!-- <section ng-app="SnowboticaSlidesConfig"> -->
+	 		// <!-- <tz-edit-slideshow  -->
+	 		// <!-- slideshow-name="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
+	 		// <!-- slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
+	 		// <!-- // slideshow-value='<?php echo $options['nwbt_tz_textarea_field_0'];? >' -->
+	 	// <!-- ></tz-edit-slideshow> -->
 }
 
 /**
  * Save the metabox data
  */
-function wpt_save_events_meta( $post_id, $post ) {
+function snowboticaCaseStudy_save_slides_meta( $post_id, $post ) {
 	// Return if the user doesn't have edit permissions.
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
 	// Verify this came from the our screen and with proper authorization,
 	// because save_post can be triggered at other times.
-	if ( ! isset( $_POST['location'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+	if ( ! isset( $_POST['location'] ) || ! wp_verify_nonce( $_POST['snowboticaCaseStudy_fields'], basename(__FILE__) ) ) {
 		return $post_id;
 	}
 	// Now that we're authenticated, time to save the data.
@@ -90,4 +89,4 @@ function wpt_save_events_meta( $post_id, $post ) {
 		}
 	endforeach;
 }
-add_action( 'save_post', 'wpt_save_events_meta', 1, 2 );
+add_action( 'save_post', 'snowboticaCaseStudy_save_slides_meta', 1, 2 );

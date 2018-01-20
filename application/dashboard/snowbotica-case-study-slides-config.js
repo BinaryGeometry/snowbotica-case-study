@@ -1,12 +1,7 @@
-// window.tzSliderSystemApiUrl   = treeline_api_object.ajax_url;
-// window.tzSliderUrlDomainPath  = treeline_api_object.url_domain_path;
-window.snowboticaSlidesPartialsPath   = snowbotica_slides_config_object.partials_path;
-// window.tzSliderImagePath      = treeline_api_object.image_path;
+window.snowboticaSlidesPartialsPath   = snowboticaCaseStudy_slides_config_object.partials_path;
 
 // Declare app level module which depends on filters, and services
-var SnowboticaSlidesConfig = angular.module('SnowboticaSlidesConfig', []);
-
-console.log('bal')
+var SnowboticaSlidesConfig = angular.module('SnowboticaCaseStudySlidesConfig', []);
 
 /* 
 * Makes everything better

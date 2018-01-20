@@ -4,7 +4,7 @@
   Case Study posttype
 -------------------------------------------------------------------------------*/
 
-function create_case_study_posttype() {
+function snowbotica_case_study_create_posttype() {
   register_post_type( CASESTUDYPOSTTYPE,
     array(
       'labels' => array(
@@ -24,10 +24,10 @@ function create_case_study_posttype() {
     )
   );
 }
-add_action( 'init', 'create_case_study_posttype' );
+add_action( 'init', 'snowbotica_case_study_create_posttype' );
 
 
-function include_template_function( $template_path ) {
+function snowbotica_case_study_include_template_function( $template_path ) {
     if ( get_post_type() == CASESTUDYPOSTTYPE ) {
         if ( is_single() ) {
             // checks if the file exists in the theme first,
@@ -42,4 +42,4 @@ function include_template_function( $template_path ) {
     return $template_path;
 }
 
-add_filter( 'template_include', 'include_template_function', 1 );
+add_filter( 'template_include', 'snowbotica_case_study_include_template_function', 1 );
