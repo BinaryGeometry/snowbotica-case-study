@@ -2,20 +2,6 @@
 
 
 
-function add_admin_scripts( $hook ) {
-
-    global $post;
-
-    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( CASESTUDYPOSTTYPE === $post->post_type ) {     
-            // wp_enqueue_script(  'myscript', get_stylesheet_directory_uri().'/js/myscript.js' );
-            tz_slideshow_load_admin_scripts();
-        }
-    }
-}
-add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
-
-
 /**
  * Adds a metabox to the right side of the screen under the â€œPublishâ€ box
  */
