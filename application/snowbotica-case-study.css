@@ -300,3 +300,43 @@ ul.slick-dots li.slick-active button {
   text-align: center;
   margin:40px 0 20px;
 }
+
+
+.snowbotica-theme-content {
+  padding:40px 0 40px;
+
+}
+.case-study-archive {
+  background: #c6c6cf;
+}
+
+.case-study-listing  {
+
+  width:100%;
+  margin-bottom:20px;
+  float: left;
+}
+.case-study-listing:last-of-type {
+  margin-bottom:0;
+}
+.case-study-listing a {
+  /*background:#a3c2d8;*/
+  display: block;
+  width:100%;
+}
+.case-study-listing .image {
+    width: 60px;
+    float: left;
+    display: block;
+    margin-right: 30px;
+}
+.case-study-listing span.image img {
+  max-width: 100%;
+  display:block;
+}
+.case-study-listing .title {
+      text-transform: uppercase;
+    font-size: 25px;
+    padding-top: 10px;
+    color: #565669;
+}

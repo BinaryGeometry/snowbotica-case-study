@@ -76,7 +76,10 @@ function tz_slideshow_load_admin_scripts() {
 
 # Included parts
 include( SNOWBOTICASLIDES . '/parts/set-up-post-type-with-templates.php');
+include( SNOWBOTICASLIDES . '/parts/set-up-sidebar.php');
+include( SNOWBOTICASLIDES . '/parts/set-up-menu-listing.php');
 include( SNOWBOTICASLIDES . '/parts/slide-in-custom-posts.php');
 include( SNOWBOTICASLIDES . '/parts/slide-settings-page.php');
 include( SNOWBOTICASLIDES . '/parts/frontend-shortcode.php');
 // include( SNOWBOTICASLIDES . '/parts/widgets/slideshow.php');
+
