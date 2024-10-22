@@ -2,11 +2,14 @@
   	<div class="medium-5 large-6 columns">
 	  	<section class="gallery-slideshow">
 			<div class="make-this-slide top">
-				<?php var_dump($slides); ?>
 				<?php foreach ($slides as $key => $slide):?>
-					<div class="slide image-slide mobile-preview-slide" data-index="0">
-						<div class="style-wrapper">
-							<?php echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
+					<div style="text-align:center;width:100%;">
+						<div class="slide image-slide mobile-preview-slide" data-index="0">
+							<div class="style-wrapper">
+								<img style="padding: inherit;margin:auto;" src="<?php echo $slide['image_url']; ?>" alt="<?php echo $slide['content']; ?>"/>
+								<?php //echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
+								<h6><?php echo $slide['content']; ?></h6>
+							</div>
 						</div>
 					</div>
 				<?php endforeach; ?>

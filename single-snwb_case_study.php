@@ -58,7 +58,7 @@ get_header(); ?>
 			[
 			"uid"       => 1,
 			"name"      => "slide_one",   
-			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"image_url" => "/wp-content/uploads/2018/01/jamesdunbarphotography-home-page-169x300.png",
 			"image_id"  => "1",
 			"content"   => "<p>Some&nbsp;<b>Content One</b></p>",
 			"title"     => "Title One",
@@ -69,7 +69,7 @@ get_header(); ?>
 			"uid"       => 2,
 			"name"      => "slide_two",   
 			"image_id"  => "2",
-			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"image_url" => "/wp-content/uploads/2018/01/jamesdunbarphotography-home-page-169x300.png",
 			"content"   => "<p>Some&nbsp;<b>Content Two</b></p>",
 			"title"     => "Title Two", 
 			"active"    => true,  
@@ -79,7 +79,7 @@ get_header(); ?>
 			"uid"       => 3,
 			"name"      => "slide_three",   
 			"image_id"  => "3",
-			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"image_url" => "/wp-content/uploads/2018/01/jamesdunbarphotography-home-page-169x300.png",
 			"content"   => "<p>Some&nbsp;<b>Content Three</b></p>",
 			"title"     => "Title Three", 
 			"active"    => true,  
@@ -89,7 +89,7 @@ get_header(); ?>
 			"uid"       => 4,
 			"name"      => "slide_four",   
 			"image_id"  => "4",
-			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"image_url" => "/wp-content/uploads/2018/01/jamesdunbarphotography-home-page-169x300.png",
 			"content"   => "<p>Some&nbsp;<b>Content Four</b></p>",
 			"title"     => "Title Four", 
 			"active"    => true,  
@@ -100,7 +100,7 @@ get_header(); ?>
 	];
 	$slides = $data["slides"];
 	$displayType = $data["displayType"];
-echo $data['displayType'];
+	// side_by_side echo $data['displayType'];
 	switch ($data["displayType"]) {
 
 		case "gallery_with_text":	
@@ -137,7 +137,7 @@ echo $data['displayType'];
 			break;
 	}
 	?>
-	S
+	
 	<?php endwhile;?>
 </section>
 <?php get_footer();
