@@ -17,3 +17,4 @@ The plugin aims to be functional out of the box and a practical easy to modify j
 
 * Add image chooser to slideshow directive [currently requires pasting of image id]
 * Add ability to reorder slides using drag and drop
+* Make templates behave consistently on smaller screens

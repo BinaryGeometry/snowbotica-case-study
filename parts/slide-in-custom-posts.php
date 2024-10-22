@@ -7,7 +7,7 @@
 function snowboticaCaseStudy_add_event_metaboxes() {
 	add_meta_box(
 		'snowboticaCaseStudy_slides_meta',
-		'Event Location',
+		'Case Study Slideshow',
 		'snowboticaCaseStudy_slides_meta',
 		CASESTUDYPOSTTYPE,
 		'advanced', 
@@ -25,11 +25,128 @@ function snowboticaCaseStudy_slides_meta() {
 	wp_nonce_field( basename( __FILE__ ), 'snowboticaCaseStudy_fields' );
 	// Get the location data if it's already been entered
 	$location = get_post_meta( $post->ID, 'location', true );
-	
-	if($location == ''){
-		$location = '{"settings": {"width":"contained", "show_captions":true}, "slides":[{"image_id":734, "caption":"Slide One"},{"image_id":735, "caption":"Slide Two"}]}'; 
 
-	}
+		// $location = '{
+		// 	"settings": {
+		// 		"width":"contained", 
+		// 		"show_captions":true
+		// 	}, 
+		// 	"slides":[
+		// 		{"image_id":734, "caption":"Slide One"},
+		// 		{"image_id":735, "caption":"Slide Two"}
+		// 	]
+		// }'; 	
+
+	// $simpleAsItGets = 'word';
+	// $event = 'life';
+	// <input 
+	// name="< ?= $simpleAsItGets;? >"
+	// id="< ?= $simpleAsItGets;? >">
+	// $('<?= $simpleAsItGets; ? >).on($event, spaceMind);
+	// function spaceMind(){}
+
+
+	// if($location == ''){
+		// $location = '{
+		// 	"view_map" : {
+		// 		"gallery_with_text" : "Gallery with Text",
+		// 		"thumbnail_list_with_images" : "Thumbnail list with Images",
+		// 		"small_thumbnail_gallery" : "Small Thumbnail Gallery", 
+		// 		"masonry" : "Masonry",
+		// 		"grid" : "Grid",
+		// 		"side_by_side" : "Side By Side",
+		// 		"slideshow" : "Slideshow"
+		// 	},
+			
+		// 	"views" : [
+		// 		{
+		// 			"name" : "gallery_with_text",          
+		// 			"label": "Gallery with Text",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
+		// 		},
+		// 		{
+		// 			"name" : "thumbnail_list_with_images", 
+		// 			"label": "Thumbnail list with Images",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
+		// 		},
+		// 		{
+		// 			"name" : "small_thumbnail_gallery",    
+		// 			"label": "Small Thumbnail Gallery",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
+		// 		}, 
+		// 		{
+		// 			"name" : "masonry",                    
+		// 			"label": "Masonry",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
+		// 		},
+		// 		{
+		// 			"name" : "grid",                       
+		// 			"label" : "Grid",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
+		// 		},
+		// 		{
+		// 			"name" : "side_by_side", 				
+		// 			"label" : "Side By Side",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
+		// 		},
+		// 		{
+		// 			"name" : "slideshow", 					
+		// 			"label" : "Slideshow",
+		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png"
+		// 		}
+		// 	],
+		// 	"displayType" : "side_by_side",
+		// 	"paginate" : true,
+		// 	"show_page_title" : true,
+		// 	"show_lead_content" : true,
+		// 	"outgoing_links" : false,
+		// 	"default_style" : "outer-boxes",
+		// 	"slides" : [
+		// 		{
+		// 		"uid"       : 1,
+		// 		"name"      : "slide_one",   
+		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
+		// 		"image_id"  : "1",
+		// 		"content"   : "<p>Some&nbsp;<b>Content One</b></p>",
+		// 		"title"     : "Title One",
+		// 		"active"    : true,
+		// 		"style"     : "A",
+		// 		"link"		: "https://p.s"
+		// 		},{
+		// 		"uid"       : 2,
+		// 		"name"      : "slide_two",   
+		// 		"image_id"  : "2",
+		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
+		// 		"content"   : "<p>Some&nbsp;<b>Content Two</b></p>",
+		// 		"title"     : "Title Two", 
+		// 		"active"    : true,  
+		// 		"style"     : "B",
+		// 		"link"		: "https://p.s"
+		// 		},{
+		// 		"uid"       : 3,
+		// 		"name"      : "slide_three",   
+		// 		"image_id"  : "3",
+		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
+		// 		"content"   : "<p>Some&nbsp;<b>Content Three</b></p>",
+		// 		"title"     : "Title Three", 
+		// 		"active"    : true,  
+		// 		"style"     : "B",
+		// 		"link"		: "https://p.s"
+		// 		},{
+		// 		"uid"       : 4,
+		// 		"name"      : "slide_four",   
+		// 		"image_id"  : "4",
+		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
+		// 		"content"   : "<p>Some&nbsp;<b>Content Four</b></p>",
+		// 		"title"     : "Title Four", 
+		// 		"active"    : true,  
+		// 		"style"     : "A",
+		// 		"link"		: "https://p.s"
+		// 		}
+		// 	]
+		// }';
+	// }
+	
 	// Output the field
 	// <input type="text" name="location" value="<?php esc_textarea( $location ); ? >" class="widefat">
 	// slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]"
@@ -37,11 +154,12 @@ function snowboticaCaseStudy_slides_meta() {
 
 	 	<h2>Configure Slides here</h2>
 		<section ng-app="SnowboticaCaseStudySlidesConfig">
-	 		<tz-edit-slideshow 
+	 		<!-- <tz-edit-slideshow 
 	 		slideshow-name="location"
 	 		slideshow-value='<?php  echo $location; ?>'
-	 	></tz-edit-slideshow>
-	 	</section>
+	 	></tz-edit-slideshow> -->
+		 <?php  echo $location; ?>
+		</section>
 	<?php
 		// <!-- <section ng-app="SnowboticaSlidesConfig"> -->
 	 		// <!-- <tz-edit-slideshow  -->

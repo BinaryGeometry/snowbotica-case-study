@@ -1,5 +1,5 @@
 <div class="snowbotica-case-study-post-edit-widget">
-<!-- 	<label>
+	<!-- <label>
         <input type="radio" name="project"
                value="contained" ng-model="data.settings.width" />
         Contained
@@ -9,9 +9,74 @@
                value="full-width" ng-model="data.settings.width" />
         Full Width
     </label> -->
+	<style>
+		.col-md-4 {
+			width:35%;
+			float:left;
+		}
+		.col-md-8 {
+			width:65%;
+			float:left;
+		}
+		.thing {
+			display:block;
+			float: left;
+			width:100%;
+		}
+		.thing .radio-input {
+			margin:10px 5px;
+			float: left;
+		}
+		.radio-label {
+			float: left;
+		}
+		.radio-label > img {
+			max-width:40px; 
+			float:left;
+		}
+		.radio-label > span {
+		    float: right;
+		    margin-top: 10px;
+		    margin-left: 10px;
+		}
 
+	</style>
+	<div class="row">
+	
+		<div class="col-md-8" style="width">
+			<span ng-repeat="view in data.views track by $index" class="thing">
 
-	<div ng-repeat="slide in data.slides track by $index">
+				<input 
+				type="radio" 
+				id="{{data.views[$index].name}}" 
+				class="radio-input"
+				name="view-selector" 
+				ng-model="selectedView" 
+				ng-value="data.views[$index].name"
+				ng-change="logIt()"
+				>
+				<label for="{{data.views[$index].name}}" class="radio-label">
+					<img src="{{data.views[$index].preview}}">
+					<span>{{data.views[$index].label}}</span>
+				</label>
+				
+				<br>
+			</span>
+			{{selectedView}}
+		</div>
+	
+		<div class="col-md-4">
+			<span ng-repeat="view in data.views track by $index" class="thing">
+				{{selectedView}}
+				<img src="{{data.views[$index].preview}}">
+			</span>
+		</div>
+	
+	</div>
+
+	<!-- <div ng-repeat="(key, value) in steps"> {{key}} : {{value}} </div> -->
+
+	<div ng-repeat="slide in data['slides'] track by $index">
 	  <label>Image ID</label>
 	  <input type="number" ng-model="slide.image_id">
 	  <label>Caption</label>
@@ -31,4 +96,22 @@
 	<h4>Name of field: {{data}}</h4>
 	</section>
 	
+
+	<pre><code>
+	{{data.views}}
+	</code></pre>
+	<br>
+	<pre><code>
+	{{data['slides']}}
+	</code></pre>
+
+	<br>
+	<pre><code>
+	{{data.displayType}}
+	</code></pre>
+	<br>
+	<pre><code>
+	{{data.default_style}}
+	</code></pre>
+
 </div>

@@ -8,63 +8,136 @@
 
 get_header(); ?>
 
-<?php //get_template_part( 'template-parts/featured-image' ); ?>
-
-<!-- <section class="contains-2 snowbotica-case-study"> -->
-
 <section class="snowbotica-case-study container">
 	<?php while ( have_posts() ) : the_post(); ?>
 	<?php 
-	$sliderMetaJSON = get_post_meta( get_the_ID(), 'location', true ); 
-	// $sliderMetaJSON = preg_replace('/\s+/', '',$sliderMetaJSON);
-	// $sliderMetaJSON = stripslashes(str_replace('\"', '"', $sliderMetaJSON));
-	/* continue with ui prototyping */
-	$sliderMeta = json_decode($sliderMetaJSON, true);
-	// var_dump($sliderMeta['slides']);
-	$slides = $sliderMeta['slides'];
+	// $sliderMetaJSON = get_post_meta( get_the_ID(), 'location', true ); 
+	// $sliderMeta = json_decode($sliderMetaJSON, true);
+	// $slides = $sliderMeta['slides'];
+	$data = [
+		"views" => [
+			[
+				"name" => "gallery_with_text",
+				"text" => "Gallery with Text",
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/nowbotica-logo.png"
+			],[
+				"name" =>"thumbnail_list_with_images", 
+				"text" => "Thumbnail list with Images",
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/oneofthose-logo.png"
+			],[
+				"name" => "small_thumbnail_gallery",
+				"text" => "Small Thumbnail Gallery", 
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/snwb-logo.png"
+			],[
+				"name" => "masonry",
+				"text" => "Masonry",
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/oneofthose-logo.png"
+			
+			],[
+				"name" =>"grid", 
+				"text" => "Grid",
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/nowbotica-logo.png"
+			],[
+				"name" =>"side_by_side", 
+				"text" => "Side By Side",
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/snwb-logo.png"
+			],[
+				"name" =>"slideshow", 
+				"text" => "Slideshow",
+				"preview" => SNOWBOTICASLIDES_URL."/application/dashboard/assets/nowbotica-logo.png"
+			]
+		],
+		"displayType" => "side_by_side",
+		"paginate" => true,
+		"show_page_title" => true,
+		"show_lead_content" => true,
+		"outgoing_links" => false,
+		"python" => "https://defn.io/2018/02/25/web-app-from-scratch-01/",
+		"default_style" => "outer-boxes",
+		"slides" => [
+			[
+			"uid"       => 1,
+			"name"      => "slide_one",   
+			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"image_id"  => "1",
+			"content"   => "<p>Some&nbsp;<b>Content One</b></p>",
+			"title"     => "Title One",
+			"active"    => true,
+			"style"     => "A",
+			"link"		=> "https://p.s"
+			],[
+			"uid"       => 2,
+			"name"      => "slide_two",   
+			"image_id"  => "2",
+			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"content"   => "<p>Some&nbsp;<b>Content Two</b></p>",
+			"title"     => "Title Two", 
+			"active"    => true,  
+			"style"     => "B",
+			"link"		=> "https://p.s"
+			],[
+			"uid"       => 3,
+			"name"      => "slide_three",   
+			"image_id"  => "3",
+			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"content"   => "<p>Some&nbsp;<b>Content Three</b></p>",
+			"title"     => "Title Three", 
+			"active"    => true,  
+			"style"     => "B",
+			"link"		=> "https://p.s"
+			],[
+			"uid"       => 4,
+			"name"      => "slide_four",   
+			"image_id"  => "4",
+			"image_url" => "https://cdn.nowbotica/insect/300/400",
+			"content"   => "<p>Some&nbsp;<b>Content Four</b></p>",
+			"title"     => "Title Four", 
+			"active"    => true,  
+			"style"     => "A",
+			"link"		=> "https://p.s"
+			]
+		]
+	];
+	$slides = $data["slides"];
+	$displayType = $data["displayType"];
+echo $data['displayType'];
+	switch ($data["displayType"]) {
+
+		case "gallery_with_text":	
+			include_once(SNOWBOTICASLIDES.'/partials/gallery_with_text.php');
+			echo $data["views"][$displayType];
+			break;
+		case "small_thumbnail_gallery":
+			include_once(SNOWBOTICASLIDES.'/partials/small_thumbnail_gallery.php');
+			echo $data["views"][$displayType];
+			break;
+		case "thumbnail_list_with_images":
+			include_once(SNOWBOTICASLIDES.'/partials/thumbnail_list_with_images.php');
+			echo $data["views"][$displayType];
+			break;
+		case "masonry":
+			include_once(SNOWBOTICASLIDES.'/partials/masonry.php');
+			echo $data["views"][$displayType];
+			break;
+		case "grid":
+			include_once(SNOWBOTICASLIDES.'/partials/grid.php');
+			echo $data["views"][$displayType];
+			break;
+		case "side_by_side":
+			include_once(SNOWBOTICASLIDES.'/partials/side_by_side.php');
+			break;
+		case "slideshow":
+			include_once(SNOWBOTICASLIDES.'/partials/slideshow.php');
+			echo $data["views"][$displayType];
+			# code...
+			break;
+		default:
+			# code...
+			echo 'something seems to be wrong';
+			break;
+	}
 	?>
-	<div class="row">
-	  	<div class="medium-5 large-6 columns">
-		  	<section class="gallery-slideshow">
-				<div class="make-this-slide top">
-					<?php foreach ($slides as $key => $slide):?>
-						<?php //$image = wp_get_attachment_image_src( $slide['image_id'] );?>
-						<?php //var_dump($image[0]);?>
-						<?php //$alt_text = get_post_meta($slide['image_id'], '_wp_attachment_image_alt', true);?>
-						<?php //$alt_text = get_post_meta($slide['image_id'], '_wp_attachment_image_title', true);?>
-						<?php //var_dump($alt_text);?>
-						<!-- echo $slide['image_id']; -->
-						<div class="slide image-slide mobile-preview-slide" data-index="0">
-							<div class="style-wrapper">
-								<?php echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
-								<!-- <img src="http://bin.geo/wp-content/uploads/2018/01/accordian-open-two.jpg" alt="" width="379" height="670" class="alignnone size-full wp-image-89" /> -->
-								<!-- <p>The off canvas system uses javascript and css tranisitions to animate in context panels from either side of the browser screen.</p> -->
-							</div>
-						</div>
-					<?php endforeach; ?>
-				</div>
-	 		</section>
-	  	</div>
-		<div class="medium-7 large-6  columns">
-				<article class="service-info background:#c6c6cf">
-					<h2><?php the_title();?></h2>
-					<div class="case-study-description">
-						<?php the_content();?>
-					</div>					
-					<?php if (get_post_meta( get_the_ID(), 'location', true ) ) : ?>
-					<div class="make-this-slide sub">
-						<?php foreach ($slides as $key => $slide):?>
-						<div class="slide image-slide description-slide" data-index="<?php echo $key;?>">
-							<div class="style-wrapper">
-								<p><?php echo $slide['caption']; ?></p>
-							</div>
-						</div>
-						<?php endforeach;?>
-					</div>
-					<?php endif; ?>
-				</article>
-		</div>
-	</div>
+	S
 	<?php endwhile;?>
 </section>
 <?php get_footer();

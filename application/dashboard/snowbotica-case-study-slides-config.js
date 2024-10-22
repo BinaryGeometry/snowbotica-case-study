@@ -9,7 +9,7 @@ var SnowboticaSlidesConfig = angular.module('SnowboticaCaseStudySlidesConfig', [
 SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
     return {
         replace: true,
-        templateUrl: snowboticaSlidesPartialsPath+'/backend/config-template.html',
+        templateUrl: snowboticaSlidesPartialsPath+'/dashboard/config-template.html',
         scope: {
           data: '=slideshowValue',
           name: '@slideshowName',
@@ -23,13 +23,38 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
         },
         controller: function($scope){
 
+            $scope.selectedView = 0
+
+            $scope.logIt = function(){
+                console.log('change', $scope.selectedView);
+                console.log($scope.selectedView);
+            }
+
         	$scope.addSlide = function(){
-        		$scope.data.slides.push({"image_id": 1, "caption":"change caption" })
+        		$scope.data.slides.push({"image_id": 1, "caption":"change caption" });
         	}
         	$scope.removeSlide = function(index){
-        		$scope.data.slides.splice(index, 1)
+        		$scope.data.slides.splice(index, 1);
         	}
 
+            function returnToNow(form_item, event_name, callback_function, settings){ 
+                // closure
+                // this.formItem = form_item || formItem();
+                // this.eventName = event_name || 'losefocus';
+                // this.callbackFunction = event_name || formCallback();
+                // this.formCallback = function(){
+                // }
+                // }
+                // this.setting = settings || 'is the one we have to do'; 
+                // $(form_item).on(event_name, callback_function)
+            } 
+
+            function callbackFunction()
+            {
+                var cf = new Object;
+                cf.InputBeingWatched = $(formItem);
+
+            }
         	// $scope.value = $scope.data //JSON.stringify($scope.data);        
         }
     };
