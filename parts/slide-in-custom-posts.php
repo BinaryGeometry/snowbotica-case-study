@@ -28,6 +28,11 @@ function snowboticaCaseStudy_slides_meta() {
 	// Get the location data if it's already been entered
 	$location = get_post_meta( $post->ID, 'location', true );
 
+	if(0 === strlen($location)){
+		$location = '{slides:[]}';
+	}
+	// var_dump($location);
+
 	$sql = "SELECT 
 	id,
 	REPLACE(REPLACE(guid, 'https://bin.geo', ''), 'http://bin.geo', '') AS url,

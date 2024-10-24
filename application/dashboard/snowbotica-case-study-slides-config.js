@@ -20,7 +20,8 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
         // 	console.log('data compiled from php')
         // 	console.log('slideshowName', scope.name);
         // 	console.log('slideshowData', scope.data);
-        // 	console.log('slides', scope.data.slides);
+        	console.log('data', scope.data);
+        	// console.log('slides', scope.data.slides);
         // 	console.log('options', typeof scope.options);
         // 	console.log('options[0', scope.options[0]);
         // 	console.log('options[0', scope.options[0].url);
@@ -40,9 +41,9 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
             }
 
             $scope.selectedView = 0
-
+     
             $scope.toggleTracker = [];
-           console.log($scope.data);
+
             $scope.data.slides.forEach(()=>{
                 $scope.toggleTracker.push({open:false});
             })
