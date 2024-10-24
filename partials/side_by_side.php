@@ -6,7 +6,6 @@
 					<div style="text-align:center;width:100%;">
 						<div class="slide image-slide mobile-preview-slide" data-index="0">
 							<div class="style-wrapper">
-								<!-- <img style="padding: inherit;margin:auto;" src="<?php echo $slide['url']; ?>" alt="<?php echo $slide['content']; ?>"/> -->
 								<?php echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
 							
 							</div>
@@ -32,11 +31,9 @@
 			<?php if (get_post_meta( get_the_ID(), 'location', true ) ) : ?>
 			<div class="make-this-slide sub">
 				<?php foreach ($slides as $key => $slide):?>
-				<div class="slide image-slide description-slide" data-index="<?php echo $key;?>">
+				<div class="slide image-slide description-slide" data-index="<?php echo esc_attr($key);?>">
 					<div class="style-wrapper">
-						
-						<p><?php //echo ($key + 1); ?></p>
-						<p><?php echo $slide['caption']; ?></p>
+						<p><?php echo esc_html($slide['caption']); ?></p>
 					</div>
 				</div>
 				<?php endforeach;?>

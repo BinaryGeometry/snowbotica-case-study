@@ -50,7 +50,7 @@ if ( ! function_exists( 'snowbotica_metabox_menu_posttype_archive' ) ) {
 
         echo '<p class="button-controls">';
         echo '<span class="add-to-menu">';
-        echo '<input type="submit"' . disabled(1, 0) . ' class="button-secondary submit-add-to-menu right" value="' . __('Add to Menu', 'andromedamedia') . '" name="add-posttype-archive-menu-item" id="submit-posttype-archive" />';
+        echo '<input type="submit"' . esc_attr(disabled(1, 0)) . ' class="button-secondary submit-add-to-menu right" value="' . esc_attr(__('Add to Menu', 'snowbotica-case-study')) . '" name="add-posttype-archive-menu-item" id="submit-posttype-archive" />';
         echo '<span class="spinner"></span>';
         echo '</span>';
         echo '</p>';

@@ -31,123 +31,27 @@ function snowboticaCaseStudy_slides_meta() {
 	if(0 === strlen($location)){
 		$location = '{slides:[]}';
 	}
-	// var_dump($location);
 
-	$sql = "SELECT 
-	id,
-	REPLACE(REPLACE(guid, 'https://bin.geo', ''), 'http://bin.geo', '') AS url,
-	post_title AS alt
-	FROM `wp_posts` wp 
-	WHERE wp.post_type = 'attachment' 
-	AND wp.post_mime_type LIKE '%image%'";
+	// $sql = $wpdb->prepare("SELECT 
+	// id,
+	// REPLACE(REPLACE(guid, 'https://bin.geo', ''), 'http://bin.geo', '') AS url,
+	// post_title AS alt
+	// FROM `wp_posts` wp 
+	// WHERE wp.post_type = 'attachment' 
+	// AND wp.post_mime_type LIKE %s", '%image');
 
-	$availableImages = $wpdb->get_results($sql);
-	$availableImagesJSON = json_encode($availableImages, true);
-
-
-	// if($location == ''){
-		// $location = '{
-		// 	"view_map" : {
-		// 		"gallery_with_text" : "Gallery with Text",
-		// 		"thumbnail_list_with_images" : "Thumbnail list with Images",
-		// 		"small_thumbnail_gallery" : "Small Thumbnail Gallery", 
-		// 		"masonry" : "Masonry",
-		// 		"grid" : "Grid",
-		// 		"side_by_side" : "Side By Side",
-		// 		"slideshow" : "Slideshow"
-		// 	},
-			
-		// 	"views" : [
-		// 		{
-		// 			"name" : "gallery_with_text",          
-		// 			"label": "Gallery with Text",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
-		// 		},
-		// 		{
-		// 			"name" : "thumbnail_list_with_images", 
-		// 			"label": "Thumbnail list with Images",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
-		// 		},
-		// 		{
-		// 			"name" : "small_thumbnail_gallery",    
-		// 			"label": "Small Thumbnail Gallery",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
-		// 		}, 
-		// 		{
-		// 			"name" : "masonry",                    
-		// 			"label": "Masonry",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
-		// 		},
-		// 		{
-		// 			"name" : "grid",                       
-		// 			"label" : "Grid",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
-		// 		},
-		// 		{
-		// 			"name" : "side_by_side", 				
-		// 			"label" : "Side By Side",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png",
-		// 		},
-		// 		{
-		// 			"name" : "slideshow", 					
-		// 			"label" : "Slideshow",
-		// 			"preview" : "/wp-content/plugins/snowbotica-case-study/application/dashboard/assets/nowbotica-logo.png"
-		// 		}
-		// 	],
-		// 	"displayType" : "side_by_side",
-		// 	"paginate" : true,
-		// 	"show_page_title" : true,
-		// 	"show_lead_content" : true,
-		// 	"outgoing_links" : false,
-		// 	"default_style" : "outer-boxes",
-		// 	"slides" : [
-		// 		{
-		// 		"uid"       : 1,
-		// 		"name"      : "slide_one",   
-		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
-		// 		"image_id"  : "1",
-		// 		"content"   : "<p>Some&nbsp;<b>Content One</b></p>",
-		// 		"title"     : "Title One",
-		// 		"active"    : true,
-		// 		"style"     : "A",
-		// 		"link"		: "https://p.s"
-		// 		},{
-		// 		"uid"       : 2,
-		// 		"name"      : "slide_two",   
-		// 		"image_id"  : "2",
-		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
-		// 		"content"   : "<p>Some&nbsp;<b>Content Two</b></p>",
-		// 		"title"     : "Title Two", 
-		// 		"active"    : true,  
-		// 		"style"     : "B",
-		// 		"link"		: "https://p.s"
-		// 		},{
-		// 		"uid"       : 3,
-		// 		"name"      : "slide_three",   
-		// 		"image_id"  : "3",
-		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
-		// 		"content"   : "<p>Some&nbsp;<b>Content Three</b></p>",
-		// 		"title"     : "Title Three", 
-		// 		"active"    : true,  
-		// 		"style"     : "B",
-		// 		"link"		: "https://p.s"
-		// 		},{
-		// 		"uid"       : 4,
-		// 		"name"      : "slide_four",   
-		// 		"image_id"  : "4",
-		// 		"image_url" : "https://cdn.nowbotica/insect/300/400",
-		// 		"content"   : "<p>Some&nbsp;<b>Content Four</b></p>",
-		// 		"title"     : "Title Four", 
-		// 		"active"    : true,  
-		// 		"style"     : "A",
-		// 		"link"		: "https://p.s"
-		// 		}
-		// 	]
-		// }';
-	// }
-	// Output the field
+	$availableImages = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery 
+		$wpdb->prepare("SELECT 
+		id,
+		REPLACE(REPLACE(guid, 'https://bin.geo', ''), 'http://bin.geo', '') AS url,
+		post_title AS alt
+		FROM `wp_posts` wp 
+		WHERE wp.post_type = 'attachment'
+		AND wp.post_mime_type LIKE %s", '%image%')
+	); 
+	$availableImagesJSON = wp_json_encode($availableImages, true);
+	$wpdb->flush();
 	// <input type="text" name="location" value="<?php esc_textarea( $location ); ? >" class="widefat">
-	// slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]"
 	?>
 	<?php  //echo $location; ?>
 
@@ -155,8 +59,8 @@ function snowboticaCaseStudy_slides_meta() {
 		<section ng-app="SnowboticaCaseStudySlidesConfig">
 	 		<tz-edit-slideshow 
 	 		slideshow-name="location"
-			slideshow-options='<?php  echo $availableImagesJSON; ?>'
-	 		slideshow-value='<?php  echo $location; ?>'
+			slideshow-options='<?php echo esc_attr($availableImagesJSON); ?>'
+	 		slideshow-value='<?php echo esc_attr($location); ?>'
 	 		></tz-edit-slideshow>
 		</section>
 		<?php  //echo $location; ?>
@@ -174,13 +78,19 @@ function snowboticaCaseStudy_save_slides_meta( $post_id, $post ) {
 	}
 	// Verify this came from the our screen and with proper authorization,
 	// because save_post can be triggered at other times.
-	if ( ! isset( $_POST['location'] ) || ! wp_verify_nonce( $_POST['snowboticaCaseStudy_fields'], basename(__FILE__) ) ) {
+	// $fieldNonceField = $_POST['snowboticaCaseStudy_fields'];
+	if ( ! isset( $_POST['location'] ) ) {
+		return $post_id;
+	}
+	
+	// if ( ! wp_verify_nonce(  wp_unslash(sanitize_text_field($_POST['snowboticaCaseStudy_fields'])), basename(__FILE__) ) ) {
+	if ( isset($_POST['snowboticaCaseStudy_fields']) && ! wp_verify_nonce(  wp_unslash(sanitize_key($_POST['snowboticaCaseStudy_fields'])), basename(__FILE__) ) ) {
 		return $post_id;
 	}
 	// Now that we're authenticated, time to save the data.
 	// This sanitizes the data from the field and saves it into an array $events_meta.
 	// $events_meta['location'] = esc_textarea( $_POST['location'] );
-	$events_meta['location'] = $_POST['location'] ;
+	$events_meta['location'] = wp_kses_post(wp_unslash($_POST['location'])) ; // https://wordpress.stackexchange.com/questions/53336/wordpress-is-stripping-escape-backslashes-from-json-strings-in-post-meta
 	// $mysqli->set_charset("utf8");
 	// Cycle through the $events_meta array.
 	// Note, in this example we just have one item, but this is helpful if you have multiple.

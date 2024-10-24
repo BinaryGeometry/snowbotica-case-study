@@ -8,8 +8,8 @@ function snowbotica_case_study_create_posttype() {
   register_post_type( CASESTUDYPOSTTYPE,
     array(
       'labels' => array(
-        'name' => __( 'Case Study' ),
-        'singular_name' => __( 'Case Study Item' )
+        'name' => __( 'Case Study', 'snowbotica-case-study' ),
+        'singular_name' => __( 'Case Study Item', 'snowbotica-case-study' )
       ),
       'public' => true,
       'supports' => array( 

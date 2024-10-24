@@ -1,11 +1,15 @@
 <?php
-/*
-Plugin Name: Snowbotica Case Study
-Plugin URI: http://binarygeometry.co.uk/products/snowbotica-case-study
-Description: Creates a custom post type with built in presentation slideshow
-Author: Andrew MacKay
-Version: 1.2.3
-Author URI: http://binarygeometry.co.uk/
+/**
+ * License   GPL-2.0+
+ * @copyright 2024 Binary Geometry Ltd <andrew.mackay@binarygeometry.co.uk>
+ * Plugin Name: Snowbotica Case Study
+ * Plugin URI: http://binarygeometry.co.uk/products/snowbotica-case-study
+ * Description: Creates a custom post type with built in presentation slideshow
+ * Author: Andrew MacKay
+ * Version: 1.0.1
+ * Author URI: http://binarygeometry.co.uk/
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
 define( 'SNOWBOTICASLIDES', plugin_dir_path( __FILE__ ) );

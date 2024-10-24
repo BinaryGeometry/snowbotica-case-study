@@ -103,41 +103,41 @@ get_header(); ?>
 		// $slides = $data["slides"];
 		// $displayType = $data["displayType"];
 		// side_by_side echo $data['displayType'];
-		switch ($data["displayType"]) {
+		// switch ($data["displayType"]) {
 
-			case "gallery_with_text":	
-				include_once(SNOWBOTICASLIDES.'/partials/gallery_with_text.php');
-				echo $data["views"][$displayType];
-				break;
-			case "small_thumbnail_gallery":
-				include_once(SNOWBOTICASLIDES.'/partials/small_thumbnail_gallery.php');
-				echo $data["views"][$displayType];
-				break;
-			case "thumbnail_list_with_images":
-				include_once(SNOWBOTICASLIDES.'/partials/thumbnail_list_with_images.php');
-				echo $data["views"][$displayType];
-				break;
-			case "masonry":
-				include_once(SNOWBOTICASLIDES.'/partials/masonry.php');
-				echo $data["views"][$displayType];
-				break;
-			case "grid":
-				include_once(SNOWBOTICASLIDES.'/partials/grid.php');
-				echo $data["views"][$displayType];
-				break;
-			case "side_by_side":
+		// 	case "gallery_with_text":	
+		// 		include_once(SNOWBOTICASLIDES.'/partials/gallery_with_text.php');
+		// 		echo $data["views"][$displayType];
+		// 		break;
+		// 	case "small_thumbnail_gallery":
+		// 		include_once(SNOWBOTICASLIDES.'/partials/small_thumbnail_gallery.php');
+		// 		echo $data["views"][$displayType];
+		// 		break;
+		// 	case "thumbnail_list_with_images":
+		// 		include_once(SNOWBOTICASLIDES.'/partials/thumbnail_list_with_images.php');
+		// 		echo $data["views"][$displayType];
+		// 		break;
+		// 	case "masonry":
+		// 		include_once(SNOWBOTICASLIDES.'/partials/masonry.php');
+		// 		echo $data["views"][$displayType];
+		// 		break;
+		// 	case "grid":
+		// 		include_once(SNOWBOTICASLIDES.'/partials/grid.php');
+		// 		echo $data["views"][$displayType];
+		// 		break;
+		// 	case "side_by_side":
 				include_once(SNOWBOTICASLIDES.'/partials/side_by_side.php');
-				break;
-			case "slideshow":
-				include_once(SNOWBOTICASLIDES.'/partials/slideshow.php');
-				echo $data["views"][$displayType];
-				# code...
-				break;
-			default:
-				# code...
-				echo 'something seems to be wrong';
-				break;
-		}
+		// 		break;
+		// 	case "slideshow":
+		// 		include_once(SNOWBOTICASLIDES.'/partials/slideshow.php');
+		// 		echo $data["views"][$displayType];
+		// 		# code...
+		// 		break;
+		// 	default:
+		// 		# code...
+		// 		echo 'something seems to be wrong';
+		// 		break;
+		// }
 		?>
 
 		<?php 
@@ -155,17 +155,17 @@ get_header(); ?>
 		<div class="row">
 			<?php foreach($posts as $key => $post): ?>
   				<div class="medium-3 small-6 columns">
-					<a href="<?php echo get_permalink( $post->ID ); ?>">
+					<a href="<?php echo esc_url(get_permalink( $post->ID )); ?>">
 
 						<div style="max-height:160px; overflow:hidden;">
 							<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
-							<img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
+							<img src="<?php echo esc_url($image[0]); ?>" alt="<?php echo esc_attr($post->post_title); ?>">
 						</div>
 						
 						<h4 style="text-transform: uppercase;
 						text-align: center;
 						margin-top:10px;font-size: 12px;color:#282828;"
-						><?php echo $post->post_title; ?></h4>
+						><?php echo esc_html($post->post_title); ?></h4>
 					</a>
 				</div>			
 			<?php endforeach; ?>

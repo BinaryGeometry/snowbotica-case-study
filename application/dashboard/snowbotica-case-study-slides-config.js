@@ -17,16 +17,8 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
           id:   '@slideshowId'
         },
         link: function(scope, element, attr) {
-        // 	console.log('data compiled from php')
-        // 	console.log('slideshowName', scope.name);
-        // 	console.log('slideshowData', scope.data);
         	console.log('data', scope.data);
-        	// console.log('slides', scope.data.slides);
-        // 	console.log('options', typeof scope.options);
-        // 	console.log('options[0', scope.options[0]);
-        // 	console.log('options[0', scope.options[0].url);
-        // 	console.log('options', typeof scope.options);
-        //    console.log('slideshowId', scope.id);
+        	console.log('slides', scope.data.slides);
         },
         // controllerAs: 'Ctrl',
         controller: function($scope){
