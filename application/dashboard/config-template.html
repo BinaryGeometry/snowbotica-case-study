@@ -1,5 +1,8 @@
 <div class="snowbotica-case-study-post-edit-widget">
 	<style>
+		#snowboticaCaseStudy_slides_meta .inside {
+			/* background:darkgreen; */
+		}
 		.col-md-4 {
 			width:35%;
 			float:left;
@@ -52,7 +55,7 @@
 				id="{{data.views[$index].name}}" 
 				class="radio-input"
 				name="view-selector" 
-				ng-model="selectedView" 
+				ng-model="selectedREPLACE(REPLACE(url, 'https://', ''), 'http://', '')View" 
 				ng-value="data.views[$index].name"
 				ng-change="logIt()"
 				>
@@ -75,47 +78,49 @@
 	
 	</div -->
 
-	<h1>jdklfsjdlkf</h1>
-	<pre ng-bind="Ctrl.data"></pre>
-
-	<!-- <div ng-repeat="(key, value) in steps"> {{key}} : {{value}} </div> -->
-
-	<div ng-repeat="slide in data['slides'] track by $index">
-	  <label>Image ID</label>
-	  <input type="number" ng-model="slide.image_id">
-	  <label>Caption</label>
-	  <input type="text" ng-model="slide.caption">
-	  <a class="button" ng-click="removeSlide($index)">remove</a>
+	<div ng-repeat="slide in data['slides'] track by $index" 
+	style="padding:5px;margin:10px 0;
+	/* border-top: solid 1px #99c799; */
+    border-bottom: solid 1px #2a6c31;"
+	>
+		<div style="display: grid; grid-template-columns: repeat(7, 1fr); width:400px;height:225px;"
+		ng-if="toggleTracker[$index].open === true">
+			<div ng-repeat="image in options track by $index"
+			ng-click="slide.image_id = image.id; toggleTracker[$parent.$index].open = false" 
+			style="max-width:100px; overflow:hidden; text-align:center;border:1px solid #888888;">
+				<img style="height:75px;" ng-src="{{image.url}}" alt="{{image.alt}}"/> 
+			</div>	
+		</div> 
+		<div style="display: grid; grid-template-columns:1fr 3fr 1fr;">
+			<div style="max-width:100px; overflow:hidden; text-align:center;border:1px solid #888888;">
+				<img style="height:75px;" 
+				ng-click="toggler($index)"
+				ng-src="{{imageById(slide.image_id, options)}}"/> 
+			</div>	
+			<div>
+				<label>Caption</label>
+				<br/>
+				<input type="text" ng-model="slide.caption">
+			</div>	
+			<div>
+				<!-- <input type="number" ng-model="slide.image_id"> -->
+				<a class="button" ng-click="removeSlide($index)">remove</a>
+			</div>
+		</div>
 	</div>
+
     <a class="button" ng-click="addSlide()">Add Slide</a>
 
 	<section><!-- outputs the required markup to save using wordpress settings api -->
-	<input type="hidden" 
+	<!-- <input 
+	type="hidden" 
 	id="{{id}}"
 	name="{{name}}"
-	value='{{data}}'
-	><!-- // note '"{{value}}"' around value vs "{{value}}" or '{{value}}' -->
-	<h4>ID of field: {{id}}</h4>
-	<h4>Name of field: {{name}}</h4>
-	<h4>Name of field: {{data}}</h4>
+	value='{{data}}'> -->
+	<!-- // note '"{{value}}"' around value vs "{{value}}" or '{{value}}' -->
+	<!-- <h4>ID of field: {{id}}</h4> -->
+	<!-- <h4>Name of field: {{name}}</h4> -->
+	<!-- <h4>Name of field: {{options}}</h4> -->
 	</section>
-	
-
-	<!-- <pre><code>
-	{{data.views}}
-	</code></pre>
-	<br>
-	<pre><code>
-	{{data['slides']}}
-	</code></pre>
-
-	<br>
-	<pre><code>
-	{{data.displayType}}
-	</code></pre>
-	<br>
-	<pre><code>
-	{{data.default_style}}
-	</code></pre> -->
 
 </div>

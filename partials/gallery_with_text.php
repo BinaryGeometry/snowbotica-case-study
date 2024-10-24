@@ -1,1 +1,0 @@
-gallery_with_text.php

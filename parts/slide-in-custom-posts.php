@@ -21,29 +21,23 @@ add_action( 'add_meta_boxes', 'snowboticaCaseStudy_add_event_metaboxes' );
  */
 function snowboticaCaseStudy_slides_meta() {
 	global $post;
+	global $wpdb;
+
 	// Nonce field to validate form request came from current site
 	wp_nonce_field( basename( __FILE__ ), 'snowboticaCaseStudy_fields' );
 	// Get the location data if it's already been entered
 	$location = get_post_meta( $post->ID, 'location', true );
 
-		// $location = '{
-		// 	"settings": {
-		// 		"width":"contained", 
-		// 		"show_captions":true
-		// 	}, 
-		// 	"slides":[
-		// 		{"image_id":734, "caption":"Slide One"},
-		// 		{"image_id":735, "caption":"Slide Two"}
-		// 	]
-		// }'; 	
+	$sql = "SELECT 
+	id,
+	REPLACE(REPLACE(guid, 'https://bin.geo', ''), 'http://bin.geo', '') AS url,
+	post_title AS alt
+	FROM `wp_posts` wp 
+	WHERE wp.post_type = 'attachment' 
+	AND wp.post_mime_type LIKE '%image%'";
 
-	// $simpleAsItGets = 'word';
-	// $event = 'life';
-	// <input 
-	// name="< ?= $simpleAsItGets;? >"
-	// id="< ?= $simpleAsItGets;? >">
-	// $('<?= $simpleAsItGets; ? >).on($event, spaceMind);
-	// function spaceMind(){}
+	$availableImages = $wpdb->get_results($sql);
+	$availableImagesJSON = json_encode($availableImages, true);
 
 
 	// if($location == ''){
@@ -156,17 +150,13 @@ function snowboticaCaseStudy_slides_meta() {
 		<section ng-app="SnowboticaCaseStudySlidesConfig">
 	 		<tz-edit-slideshow 
 	 		slideshow-name="location"
+			slideshow-options='<?php  echo $availableImagesJSON; ?>'
 	 		slideshow-value='<?php  echo $location; ?>'
 	 		></tz-edit-slideshow>
 		</section>
-	<?php  //echo $location; ?>
-	<?php
-		// <!-- <section ng-app="SnowboticaSlidesConfig"> -->
-	 		// <!-- <tz-edit-slideshow  -->
-	 		// <!-- slideshow-name="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
-	 		// <!-- slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
-	 		// <!-- // slideshow-value='<?php echo $options['nwbt_tz_textarea_field_0'];? >' -->
-	 	// <!-- ></tz-edit-slideshow> -->
+		<?php  //echo $location; ?>
+		<?php
+		// <!-- slideshow-name="nwbt_tz_setting[nwbt_tz_textarea_field_0]" -->
 }
 
 /**

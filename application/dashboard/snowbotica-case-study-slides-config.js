@@ -12,28 +12,55 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
         templateUrl: snowboticaSlidesPartialsPath+'/dashboard/config-template.html',
         scope: {
           data: '=slideshowValue',
+          options: '=slideshowOptions',
           name: '@slideshowName',
           id:   '@slideshowId'
         },
         link: function(scope, element, attr) {
-        	console.log('data compiled from php')
-        	console.log('slideshowName', scope.name);
-        	console.log('slideshowData', scope.data);
-        	console.log('slides', scope.data.slides);
-            // <tz-edit-slideshow 
-            // slideshow-name="location"
-            // slideshow-value='<?php  echo $location; ?>'
-            // ></tz-edit-slideshow>
-        	console.log('slideshowId', scope.id);
+        // 	console.log('data compiled from php')
+        // 	console.log('slideshowName', scope.name);
+        // 	console.log('slideshowData', scope.data);
+        // 	console.log('slides', scope.data.slides);
+        // 	console.log('options', typeof scope.options);
+        // 	console.log('options[0', scope.options[0]);
+        // 	console.log('options[0', scope.options[0].url);
+        // 	console.log('options', typeof scope.options);
+        //    console.log('slideshowId', scope.id);
         },
-        controllerAs: 'Ctrl',
+        // controllerAs: 'Ctrl',
         controller: function($scope){
             let vm = $scope;
 
-
-            
+            $scope.imageById = (id, options) => {
+                let image = options.find((iteree) => parseInt(iteree.id) === parseInt(id));
+                if(undefined !== image){
+                    return image.url
+                }
+                return ''
+            }
 
             $scope.selectedView = 0
+
+            $scope.toggleTracker = [];
+           
+            $scope.data.slides.forEach((i)=>{
+                $scope.toggleTracker[i] = {open:false}
+            })
+
+            $scope.toggler = (index) => {
+                console.log('index', index)
+                $scope.toggleTracker.forEach(() => {
+                    $scope.toggleTracker.open = false
+                });
+
+                console.log($scope.toggleTracker)
+
+                if($scope.toggleTracker[index].open === false){
+                    $scope.toggleTracker[index].open = true;
+                } else {
+                    $scope.toggleTracker[index].open = false;
+                }
+            }
 
             $scope.logIt = function(){
                 console.log('change', $scope.selectedView);
@@ -41,8 +68,9 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
             }
 
         	$scope.addSlide = function(){
-        		$scope.data.slides.push({"image_id": 1, "caption":"change caption" });
-        	}
+        		$scope.data.slides.push({"image_id": 18, "caption":"change caption" });
+                $scope.toggleTracker.push({open:false})
+            }
         	$scope.removeSlide = function(index){
         		$scope.data.slides.splice(index, 1);
         	}
@@ -61,9 +89,7 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
 
             function callbackFunction()
             {
-                var cf = new Object;
-                cf.InputBeingWatched = $(formItem);
-
+                slideshow-options
             }
         	// $scope.value = $scope.data //JSON.stringify($scope.data);        
         }
