@@ -42,9 +42,9 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
             $scope.selectedView = 0
 
             $scope.toggleTracker = [];
-           
-            $scope.data.slides.forEach((i)=>{
-                $scope.toggleTracker[i] = {open:false}
+           console.log($scope.data);
+            $scope.data.slides.forEach(()=>{
+                $scope.toggleTracker.push({open:false});
             })
 
             $scope.toggler = (index) => {

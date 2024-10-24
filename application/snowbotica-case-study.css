@@ -295,6 +295,15 @@ ul.slick-dots li.slick-active button {
 
 }
 
+.image-slide .style-wrapper img {
+  margin: auto;
+  max-height:500px;
+  width: auto;
+  height: auto;
+  display: block;
+
+}
+
 .stacked-image {
   width:100%;
   text-align: center;

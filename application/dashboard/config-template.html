@@ -79,9 +79,7 @@
 	</div -->
 
 	<div ng-repeat="slide in data['slides'] track by $index" 
-	style="padding:5px;margin:10px 0;
-	/* border-top: solid 1px #99c799; */
-    border-bottom: solid 1px #2a6c31;"
+	style="padding:5px;margin:10px 0; border-bottom: solid 1px #2a6c31;"
 	>
 		<div style="display: grid; grid-template-columns: repeat(7, 1fr); width:400px;height:225px;"
 		ng-if="toggleTracker[$index].open === true">
@@ -112,15 +110,11 @@
     <a class="button" ng-click="addSlide()">Add Slide</a>
 
 	<section><!-- outputs the required markup to save using wordpress settings api -->
-	<!-- <input 
+	<input
 	type="hidden" 
 	id="{{id}}"
 	name="{{name}}"
-	value='{{data}}'> -->
-	<!-- // note '"{{value}}"' around value vs "{{value}}" or '{{value}}' -->
-	<!-- <h4>ID of field: {{id}}</h4> -->
-	<!-- <h4>Name of field: {{name}}</h4> -->
-	<!-- <h4>Name of field: {{options}}</h4> -->
+	value='{{data}}'>
 	</section>
 
 </div>

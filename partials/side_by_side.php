@@ -6,9 +6,9 @@
 					<div style="text-align:center;width:100%;">
 						<div class="slide image-slide mobile-preview-slide" data-index="0">
 							<div class="style-wrapper">
-								<img style="padding: inherit;margin:auto;" src="<?php echo $slide['image_url']; ?>" alt="<?php echo $slide['content']; ?>"/>
-								<?php //echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
-								<h6><?php echo $slide['content']; ?></h6>
+								<!-- <img style="padding: inherit;margin:auto;" src="<?php echo $slide['url']; ?>" alt="<?php echo $slide['content']; ?>"/> -->
+								<?php echo wp_get_attachment_image( $slide['image_id'], 'full' );?>
+							
 							</div>
 						</div>
 					</div>
@@ -34,8 +34,9 @@
 				<?php foreach ($slides as $key => $slide):?>
 				<div class="slide image-slide description-slide" data-index="<?php echo $key;?>">
 					<div class="style-wrapper">
-						<!-- <p><?php var_dump($slide[0]); ?></p> -->
-						<!-- <p><?php //echo $slide['caption']; ?></p> -->
+						
+						<p><?php //echo ($key + 1); ?></p>
+						<p><?php echo $slide['caption']; ?></p>
 					</div>
 				</div>
 				<?php endforeach;?>
