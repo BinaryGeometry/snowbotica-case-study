@@ -19,9 +19,19 @@ SnowboticaSlidesConfig.directive('tzEditSlideshow', ['$parse', function($parse){
         	console.log('data compiled from php')
         	console.log('slideshowName', scope.name);
         	console.log('slideshowData', scope.data);
+        	console.log('slides', scope.data.slides);
+            // <tz-edit-slideshow 
+            // slideshow-name="location"
+            // slideshow-value='<?php  echo $location; ?>'
+            // ></tz-edit-slideshow>
         	console.log('slideshowId', scope.id);
         },
+        controllerAs: 'Ctrl',
         controller: function($scope){
+            let vm = $scope;
+
+
+            
 
             $scope.selectedView = 0
 

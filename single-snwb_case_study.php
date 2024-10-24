@@ -14,6 +14,7 @@ get_header(); ?>
 	// $sliderMetaJSON = get_post_meta( get_the_ID(), 'location', true ); 
 	// $sliderMeta = json_decode($sliderMetaJSON, true);
 	// $slides = $sliderMeta['slides'];
+
 	$data = [
 		"views" => [
 			[

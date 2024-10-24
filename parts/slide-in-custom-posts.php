@@ -146,20 +146,20 @@ function snowboticaCaseStudy_slides_meta() {
 		// 	]
 		// }';
 	// }
-	
 	// Output the field
 	// <input type="text" name="location" value="<?php esc_textarea( $location ); ? >" class="widefat">
 	// slideshow-id="nwbt_tz_setting[nwbt_tz_textarea_field_0]"
 	?>
+	<?php  //echo $location; ?>
 
 	 	<h2>Configure Slides here</h2>
 		<section ng-app="SnowboticaCaseStudySlidesConfig">
-	 		<!-- <tz-edit-slideshow 
+	 		<tz-edit-slideshow 
 	 		slideshow-name="location"
 	 		slideshow-value='<?php  echo $location; ?>'
-	 	></tz-edit-slideshow> -->
-		 <?php  echo $location; ?>
+	 		></tz-edit-slideshow>
 		</section>
+	<?php  //echo $location; ?>
 	<?php
 		// <!-- <section ng-app="SnowboticaSlidesConfig"> -->
 	 		// <!-- <tz-edit-slideshow  -->
